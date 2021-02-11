@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
     //use request to call API
     axios.get(dogUrl).then(function (apiResponse) {
         let dog = apiResponse.data;
-        // res.send(apiResponse.toString())
-        res.send('index', dog)
+        // res.send(`<h2>${JSON.stringify(dog)}</h2>`)
+        res.render('index', {dog})
     })
 })
 
