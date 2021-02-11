@@ -14,20 +14,20 @@ app.use(ejsLayouts)
 // })
 
 // use req to call api
-app.get('/', (req,res) => {
-    const dogUrl = 'https://dog.ceo/api/breeds/list/all'
+app.get('/', (req, res) => {
+    const dogUrl = 'https://dog.ceo/api/breeds/image/random'
     //use request to call API
-    axios.get(dogUrl).then(function(apiResponse) {
-        let dog = apiResponse.data.results;
-        res.send(apiResponse.toString())
-        res.render('index', apiResponse)
+    axios.get(dogUrl).then(function (apiResponse) {
+        let dog = apiResponse.data;
+        // res.send(apiResponse.toString())
+        res.send('index', dog)
     })
 })
 
 
-let server = app.listen(process.env.PORT || 3000, function() {
+let server = app.listen(process.env.PORT || 3000, function () {
     console.log(`Listening on ... ${process.env.PORT || 3000}`);
-   })
-    
-   module.exports = server
+})
+
+module.exports = server
 
