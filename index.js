@@ -1,13 +1,13 @@
-let express = require('express')
-let ejsLayouts = require('express-ejs-layouts')
-// let db = require('./models')
-let app = express()
-let axios = require('axios')
+const express = require('express');
+const ejsLayouts = require('express-ejs-layouts');
+ const db = require('./models');
+const app = express();
+const axios = require('axios');
 
-app.set('view engine', 'ejs')
-app.use(require('morgan')('dev'))
-app.use(express.urlencoded({ extended: false }))
-app.use(ejsLayouts)
+app.use(require('morgan')('dev'));
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(ejsLayouts);
 
 // app.get('/', (req,res) => {
 //    // res.send('dfdsfadsfa')
@@ -24,10 +24,13 @@ app.get('/', (req, res) => {
     })
 })
 
+//need to import all the routes created in routes/dogs.js to use through route /dog (url route)
+// app.use('/dog', require('./routes/dog'));
+app.use('/dog', require('./routes/dog'));
 
 let server = app.listen(process.env.PORT || 3000, function () {
     console.log(`Listening on ... ${process.env.PORT || 3000}`);
 })
 
-module.exports = server
+module.exports = server;
 
